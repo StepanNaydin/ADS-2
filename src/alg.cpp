@@ -33,7 +33,7 @@ double expn(double x, uint16_t count) {
 double sinn(double x, uint16_t count) {
 	uint16_t sum = x, step = 3;
 	for (; count > 0; --count) {
-		sum -= pown(x, step) / fact(step) * pow(-1, step-1);
+		sum -= pown(x, step) / fact(step) * pown(-1, step-1);
 		step = 2 * step - 1;
 	}
 	return sum;
@@ -42,7 +42,7 @@ double sinn(double x, uint16_t count) {
 double cosn(double x, uint16_t count) {
 	uint16_t sum = 1, step = 2;
 	for (; count > 0; --count) {
-		sum -= pown(x, step) / fact(step) * pow(-1, step);
+		sum -= pown(x, step) / fact(step) * pown(-1, step);
 		step = 2 * step - 2;
 	}
 	return sum;
