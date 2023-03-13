@@ -37,7 +37,7 @@ double expn(double x, uint16_t count) {
 double sinn(double x, uint16_t count) {
     int step = 3, flag = 1;
     double sum = 0;
-    for (int q = 1; q < count + 2; q += 2) {
+    for (int q = 1; q < count * 2; q += 2) {
         sum += flag*pown(x, q) / fact(q);
         flag = -flag;
     }
@@ -47,7 +47,7 @@ double sinn(double x, uint16_t count) {
 double cosn(double x, uint16_t count) {
     int step = 3, flag = 1;
     double sum = 0;
-    for (int q = 0; q < count + 8; q += 2) {
+    for (int q = 0; q < count * 2; q += 2) {
         sum += flag * pown(x, q) / fact(q);
         flag = -flag;
     }
