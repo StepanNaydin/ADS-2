@@ -5,6 +5,9 @@
 
 double pown(double value, uint16_t n) {
 	double value1 = value;
+	if (n == 0) {
+		return 1;
+	}
 	for (; n > 1; --n) {
 		value *= value1;
 	}
@@ -22,28 +25,38 @@ double calcItem(double x, uint16_t n) {
 }
 
 double expn(double x, uint16_t count) {
-	uint16_t sum = 1, step = 0;
+	uint16_t step = 1;
+	long double sum = 1.0;
 	for (; count > 0; --count) {
-		sum += pown(x, step) / fact(step);
+		//std::cout << pown(x, step) << "/" << fact(step) <<"="<< pown(x, step) / (double)fact(step)<< std::endl;
+		sum += (double)pown(x, step) / (double)fact(step);
+		//std::cout << sum << std::endl;
 		step++;
 	}
+	//std::cout << pown(x, step) << "/" << fact(step) << "=" << pown(x, step) / fact(step) << std::endl;
 	return sum;
 }
 
 double sinn(double x, uint16_t count) {
-	uint16_t sum = x, step = 3;
-	for (; count > 0; --count) {
-		sum -= pown(x, step) / fact(step) * pown(-1, step-1);
-		step = 2 * step - 1;
+	int step = 3, flag = 1;
+	double sum = 0;
+	for (int q=1; q<count; q+=2) {
+		//std::cout << sum<<"+="<< flag <<"*"<< pown(x, q) << "/" << fact(q)<<"|"<< flag * pown(x, q) / fact(q)<< std::endl;
+		sum += flag*pown(x, q) / fact(q);
+		//std::cout << sum << std::endl;
+		flag = -flag;
 	}
 	return sum;
 }
 
 double cosn(double x, uint16_t count) {
-	uint16_t sum = 1, step = 2;
-	for (; count > 0; --count) {
-		sum -= pown(x, step) / fact(step) * pown(-1, step);
-		step = 2 * step - 2;
+	int step = 3, flag = 1;
+	double sum = 0;
+	for (int q = 0; q < count; q += 2) {
+		//std::cout << sum<<"+="<< flag <<"*"<< pown(x, q) << "/" << fact(q)<<"|"<< flag * pown(x, q) / fact(q)<< std::endl;
+		sum += flag * pown(x, q) / fact(q);
+		//std::cout << sum << std::endl;
+		flag = -flag;
 	}
 	return sum;
 }
